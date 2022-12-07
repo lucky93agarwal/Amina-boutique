@@ -672,7 +672,7 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
             margin: const EdgeInsets.only(top: 50,bottom: 10),
             child: BottomBar(
               check: false,
-              text:  widget.admin == true?"Update Video":"Create Video",
+              text:  widget.admin == true?"Update Course":"Create Video",
               onTap: () {
                 if (_courseDetailsController.text.length == 0) {
                   showToast("Please enter course details...");
