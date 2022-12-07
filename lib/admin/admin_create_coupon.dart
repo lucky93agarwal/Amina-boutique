@@ -146,12 +146,12 @@ class _AdminCreateCouponScreenState extends State<AdminCreateCouponScreen> {
         SizedBox(height: 10,),
         EntryField(
           controller: _titleController,
-          label: 'Coupon title',
+          label: 'Coupon code',
           image: null,
           keyboardType: TextInputType.name,
           maxLength: null,
           readOnly: false,
-          hint: 'Coupon title',
+          hint: 'Coupon code',
         ),
 
 
