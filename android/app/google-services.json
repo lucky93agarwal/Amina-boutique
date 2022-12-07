@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "399865261246",
+    "project_id": "aminabo-13daf",
+    "storage_bucket": "aminabo-13daf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399865261246:android:6375c0d69ffb15e16e82ef",
+        "android_client_info": {
+          "package_name": "com.app.aminaboutique"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399865261246-0amlorc697lt629o6bmubpm3f1fcckc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aminaboutique",
+            "certificate_hash": "15ed42ef5801e554c7b36c702ebcaa162aedeb22"
+          }
+        },
+        {
+          "client_id": "399865261246-mk20u4bq7tvi5a222psqo2v55ur08f8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6mRrQaFQKd_BC9ZEipqf2PdNYHVMk0lU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399865261246-mk20u4bq7tvi5a222psqo2v55ur08f8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
