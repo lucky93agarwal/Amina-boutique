@@ -520,6 +520,11 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
               _cvTimeControllers.add(new TextEditingController());
               _cvTitleControllers.add(new TextEditingController());
               _cvUrlControllers.add(new TextEditingController());
+
+              _cvUrlControllers[index].text =_updateurl.text.toString();
+              _cvTitleControllers[index].text =_updatetite.text.toString();
+              _cvTimeControllers[index].text =_updatetiming.text.toString();
+              _cvDetailsControllers[index].text =_updatevideodetails.text.toString();
             }
 
 
@@ -644,53 +649,24 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
             );
           }),),
           SizedBox(height: 10,),
-          Container(
-            height: 64.0,
-            margin: const EdgeInsets.only(top: 50,bottom: 10),
-            child: BottomBar(
-              check: false,
-              text: "Add Video",
-              onTap: () {
-                if(totalvideo == 0){
-                  totalvideo = totalvideo +1;
-                  setState(() {
-                    totalvideo;
-                  });
-                }else {
-                  for(int i=0;i<=totalvideo-1;i++){
-
-                    if (_cvDetailsControllers[i].text.length == 0) {
-                      showToast("Please enter video details...");
-                    } else if (_cvTimeControllers[i].text.length == 0) {
-                      showToast("Please enter video time");
-
-                    } else if (_cvTitleControllers[i].text.length == 0) {
-                      showToast("Please enter video title");
-
-                    }  else if (_cvUrlControllers[i].text.length == 0) {
-                      showToast("Please enter video url");
-
-                    } else  {
-                      if(i==totalvideo-1){
-                        totalvideo = totalvideo +1;
-                        setState(() {
-                          totalvideo;
-                        });
-                      }
-                    }
-                  }
-                }
-
-
-
-
-              },
-            ),
-
-
-
-
-          ),
+          // Container(
+          //   height: 64.0,
+          //   margin: const EdgeInsets.only(top: 50,bottom: 10),
+          //   child: BottomBar(
+          //     check: false,
+          //     text: "Add Video",
+          //     onTap: () {
+          //
+          //
+          //
+          //
+          //     },
+          //   ),
+          //
+          //
+          //
+          //
+          // ),
           Container(
             height: 64.0,
             margin: const EdgeInsets.only(top: 50,bottom: 10),
@@ -769,6 +745,148 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
                 : new Container(),
           )
         ],),
+      floatingActionButton: FloatingActionButton(
+        // isExtended: true,
+        child: Icon(Icons.add,color: Colors.white,),
+        backgroundColor: kMainColor,
+        onPressed: () {
+          showAddVideoBtn();
+          // setState(() {
+          //   //i++;
+          // });
+        },
+      ),
     );
+
+
+
+  }
+  TextEditingController _updatetite = new TextEditingController();
+  TextEditingController _updatevideodetails = new TextEditingController();
+  TextEditingController _updatetiming = new TextEditingController();
+  TextEditingController _updateurl = new TextEditingController();
+  showAddVideoBtn(){
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Add Video',style: TextStyle(fontWeight: FontWeight.bold),).tr(),
+            content: Container(
+              height: 275,
+              child: Column(
+                children: [
+                  new Row(
+                    children: <Widget>[
+                      new Expanded(
+                        child: new TextField(
+                          controller: _updatetite,
+                          autofocus: true,
+                          decoration: new InputDecoration(
+                              labelText: 'Course video title'),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 9),
+                  new Row(
+                    children: <Widget>[
+                      new Expanded(
+                        child: new TextField(
+                          controller: _updatevideodetails,
+                          autofocus: true,
+                          decoration: new InputDecoration(
+                              labelText: 'Course video details'),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 9),
+
+                  new Row(
+                    children: <Widget>[
+                      new Expanded(
+                        child: new TextField(
+                          controller: _updatetiming,
+                          autofocus: true,
+                          decoration: new InputDecoration(
+                              labelText: 'Video timing'),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 9),
+
+                  new Row(
+                    children: <Widget>[
+                      new Expanded(
+                        child: new TextField(
+                          controller: _updateurl,
+                          autofocus: true,
+                          decoration: new InputDecoration(
+                              labelText: 'Course video full URL'),
+                        ),
+                      )
+                    ],
+                  ),
+
+
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('no').tr(),
+                textColor: kMainColor,
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: kTransparentColor)),
+                onPressed: () => Navigator.pop(context),
+              ),
+              FlatButton(
+                  child: Text('yes').tr(),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: kTransparentColor)),
+                  textColor: kMainColor,
+                  onPressed: () {
+                    addVideoBtn();
+                    // updateapi(snapshot.reference.id,user.id!,imageUrlwhite2 == "assets/images/upload.png" ? user.image! : imageUrlwhite2!,
+                    //     _updatetite.text.length >0 ? _updatetite.text : user.title!);
+                    Navigator.pop(context);
+
+                  })
+            ],
+          );
+        });
+  }
+  addVideoBtn(){
+    if(totalvideo == 0){
+      totalvideo = totalvideo +1;
+      setState(() {
+        totalvideo;
+      });
+    }else {
+      for(int i=0;i<=totalvideo-1;i++){
+
+        if (_cvDetailsControllers[i].text.length == 0) {
+          showToast("Please enter video details...");
+        } else if (_cvTimeControllers[i].text.length == 0) {
+          showToast("Please enter video time");
+
+        } else if (_cvTitleControllers[i].text.length == 0) {
+          showToast("Please enter video title");
+
+        }  else if (_cvUrlControllers[i].text.length == 0) {
+          showToast("Please enter video url");
+
+        } else  {
+          if(i==totalvideo-1){
+            totalvideo = totalvideo +1;
+            setState(() {
+              totalvideo;
+            });
+          }
+        }
+      }
+    }
+
   }
 }
