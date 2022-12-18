@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:amin/admin/admin_category.dart';
 import 'package:amin/admin/admin_couponList.dart';
+import 'package:amin/admin/admin_course_buy_list.dart';
 import 'package:amin/admin/admin_faq_user_list.dart';
 import 'package:amin/admin/admin_product_banner.dart';
 import 'package:amin/admin/admin_rating_list.dart';
@@ -68,9 +69,14 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   //Coupon
   int? faqCount = 0;
 
+  int? courseBuyCount =0;
+
 
   CollectionReference ratings = FirebaseFirestore.instance.collection('Ratings');
   CollectionReference faqUser = FirebaseFirestore.instance.collection('faqUser');
+
+
+  CollectionReference coursebuy = FirebaseFirestore.instance.collection('course_buy');
   //CouponF
   int? RatingCount = 0;
   late List<QueryDocumentSnapshot<Map<String, dynamic>>> docssfaq;
@@ -90,6 +96,15 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           }),
           cprint('User userCount =  ' + userCount.toString()),
         });
+
+
+    coursebuy.get().then((value) => {
+      setState(() {
+        courseBuyCount = value.size;
+        /*  Choice cChoice = Choice(title: "Users", icon: Icons.supervised_user_circle,count: userCount.toString());
+       choices.add(cChoice);*/
+      }),
+    });
 
     videos.get().then((value) => {
       setState(() {
@@ -546,6 +561,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               SizedBox(
                 height: 10,
               ),
+
+
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -609,6 +626,156 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                     style: TextStyle(
                                         color: Colors.blue,
                                         fontSize: courseCount.toString().length ==3?30: courseCount.toString().length ==4?20:40,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    InkWell(
+                      onTap:(){
+
+                        nextScreen(context, AdminCourseBuyList());
+                      },
+                      child: Container(
+                        height: 150,
+                        margin: const EdgeInsets.symmetric(horizontal: 7),
+                        width: width*0.4,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 5.0,
+                              color: Color(0xFF303030),
+                              spreadRadius: 3,
+                              offset: Offset(
+                                1,
+                                1,
+                              ),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
+                          border: Border.all(color: Color(0xff595961)),),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Icon(
+                                Icons.dry_cleaning,
+                                color: Colors.blue,
+                                size: 80,
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  /*Icon(
+                                    Icons.dry_cleaning,
+                                    color: Colors.blue,
+                                    size: 80,
+                                  ),*/
+                                  Text(
+                                    "Course Buy",
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    courseBuyCount.toString(),
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: courseBuyCount.toString().length ==3?30: courseBuyCount.toString().length ==4?20:40,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap:(){
+
+                        nextScreen(context, AdminCouponListScreen(check:false));
+                      },
+                      child: Container(
+                        height: 150,
+                        margin: const EdgeInsets.symmetric(horizontal: 7),
+                        width: width*0.4,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 5.0,
+                              color: Color(0xFF303030),
+                              spreadRadius: 3,
+                              offset: Offset(
+                                1,
+                                1,
+                              ),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
+                          border: Border.all(color: Color(0xff595961)),),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Icon(
+                                Icons.monetization_on,
+                                color: Colors.blue,
+                                size: 80,
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  /*Icon(
+                                    Icons.monetization_on,
+                                    color: Colors.blue,
+                                    size: 80,
+                                  ),*/
+                                  Text(
+                                    "Coupon",
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    CouponCount.toString(),
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize:  CouponCount.toString().length ==3?30: CouponCount.toString().length ==4?20:40,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -693,8 +860,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 ),
               ),
 
-
-
               SizedBox(
                 height: 10,
               ),
@@ -703,74 +868,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InkWell(
-                      onTap:(){
 
-                        nextScreen(context, AdminCouponListScreen(check:false));
-                      },
-                      child: Container(
-                        height: 150,
-                        margin: const EdgeInsets.symmetric(horizontal: 7),
-                        width: width*0.4,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 5.0,
-                              color: Color(0xFF303030),
-                              spreadRadius: 3,
-                              offset: Offset(
-                                1,
-                                1,
-                              ),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
-                          ),
-                          border: Border.all(color: Color(0xff595961)),),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 10),
-                              child: Icon(
-                                Icons.monetization_on,
-                                color: Colors.blue,
-                                size: 80,
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  /*Icon(
-                                    Icons.monetization_on,
-                                    color: Colors.blue,
-                                    size: 80,
-                                  ),*/
-                                  Text(
-                                    "Coupon",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    CouponCount.toString(),
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontSize:  CouponCount.toString().length ==3?30: CouponCount.toString().length ==4?20:40,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ),
-                    ),
 
                     InkWell(
                       onTap:(){
@@ -840,22 +938,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         ),
                       ),
                     ),
-
-                  ],
-                ),
-              ),
-
-
-
-
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
                     InkWell(
                       onTap:(){
 
@@ -897,7 +979,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                /*  Icon(
+                                  /*  Icon(
                                     Icons.monetization_on,
                                     color: Colors.blue,
                                     size: 80,
@@ -914,6 +996,77 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                     style: TextStyle(
                                         color: Colors.blue,
                                         fontSize: DressBuyCount.toString().length ==3?30: DressBuyCount.toString().length ==4?20:40,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+
+
+
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap:(){
+
+                        nextScreen(context, AdminHomeBannerScreen());
+                      },
+                      child: Container(
+                        height: 150,
+                        margin: const EdgeInsets.symmetric(horizontal: 7),
+                        width: width*0.4,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 5.0,
+                              color:  Color(0xFF303030),
+                              spreadRadius: 3,
+                              offset: Offset(
+                                1,
+                                1,
+                              ),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
+                          border: Border.all(color: Color(0xff595961)),),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Icon(
+                                Icons.monetization_on,
+                                color: Colors.blue,
+                                size: 80,
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Home \nScreen Banner",
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -1006,62 +1159,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InkWell(
-                      onTap:(){
 
-                        nextScreen(context, AdminHomeBannerScreen());
-                      },
-                      child: Container(
-                        height: 150,
-                        margin: const EdgeInsets.symmetric(horizontal: 7),
-                        width: width*0.4,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 5.0,
-                              color:  Color(0xFF303030),
-                              spreadRadius: 3,
-                              offset: Offset(
-                                1,
-                                1,
-                              ),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
-                          ),
-                          border: Border.all(color: Color(0xff595961)),),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 10),
-                              child: Icon(
-                                Icons.monetization_on,
-                                color: Colors.blue,
-                                size: 80,
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Home \nScreen Banner",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ),
-                    ),
                     InkWell(
                       onTap:(){
 
