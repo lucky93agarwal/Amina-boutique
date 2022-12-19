@@ -33,35 +33,47 @@ class _AdminCourseBuyListState extends State<AdminCourseBuyList> {
           query: queryPost,
           itemBuilder: (context,snapshot){
             final user = snapshot.data();
-            return ListTile(
-              onTap: (){
+            return Column(
+              children: [
+                ListTile(
+                  onTap: (){
           //      nextScreen(context, AdminProfileScreen(userlist:user));
-              },
-              // leading: CircleAvatar(backgroundImage: NetworkImage(user.image!),),
-              title: Row(children: [
-                Text("title : ",style: TextStyle(color: Colors.white,fontSize: 13)),
-                Text(user.title!,style: Theme.of(context).textTheme.headline2,),
-              ],),
-              subtitle: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  },
+                  // leading: CircleAvatar(backgroundImage: NetworkImage(user.image!),),
+                  title: Row(children: [
+                    Text("Title : ",style: TextStyle(color: Colors.blue,fontSize: 13)),
+                    Text(user.title!,style: Theme.of(context).textTheme.headline2,),
+                  ],),
+                  subtitle: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(children: [
-                        Text("MRP Amount : ",style: TextStyle(color: Colors.blue,fontSize: 13)),
-                        Text(user.price!+" Rs",style: Theme.of(context).textTheme.headline2,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(children: [
+                            Text("MRP Amount : ",style: TextStyle(color: Colors.blue,fontSize: 11)),
+                            Text(user.price!+" Rs",style:TextStyle(color: Colors.white,fontSize: 14)),
+                          ],),
+                          Row(children: [
+                            Text("Paid Amount : ",style: TextStyle(color: Colors.blue,fontSize: 11)),
+                            Text(user.paidAmount!+" Rs",style: TextStyle(color: Colors.white,fontSize: 14)),
+                          ],),
                       ],),
                       Row(children: [
-                        Text("Paid Amount : ",style: TextStyle(color: Colors.blue,fontSize: 13)),
-                        Text(user.paidAmount!+" Rs",style: Theme.of(context).textTheme.headline2,),
+                        Text("Date and Time : ",style: TextStyle(color: Colors.blue,fontSize: 11)),
+                        Text(user.date!,style: TextStyle(color: Colors.white,fontSize: 11),),
                       ],),
+
+                //    Text("Date and Time : "+user.date!,style: TextStyle(color: Colors.white,fontSize: 13)),
                   ],),
 
-                Text(user.paidAmount!+"\n"+user.date!,style: TextStyle(color: Colors.white,fontSize: 13)),
-              ],),
-
+                ),
+                Container(width: MediaQuery.of(context).size.width,
+                  height: 1,
+                  margin: const EdgeInsets.only(top: 10,bottom: 5),
+                  color: Color(0xFFE57373),)
+              ],
             );
           }
       ),

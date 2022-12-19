@@ -280,7 +280,12 @@ class _RazorpayScreenState extends State<RazorpayScreen> {
       'price': widget.courseList.cPrice,
       'review':"false",
       'coupon_id': widget.couponId,
-      'Coupon_status': widget.couponStatus
+      'Coupon_status': widget.couponStatus,
+
+
+      'title':widget.courseList.cName!,
+      'userName': UserName,
+      'paid_Amount': widget.courseList.cPrice,
     })
         .then((value) => {
       showToast("Course Purchased Successfully"),
