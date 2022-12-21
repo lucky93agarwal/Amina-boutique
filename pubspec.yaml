@@ -64,6 +64,7 @@ dependencies:
   share_plus: ^4.0.8
   country_picker: ^2.0.15
   pod_player: ^0.0.6
+  dropdown_button2: ^1.9.2
   cached_network_image:
   flutter_local_notifications:
 

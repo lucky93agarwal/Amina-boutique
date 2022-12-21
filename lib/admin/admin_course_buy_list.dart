@@ -1,5 +1,7 @@
+import 'package:amin/admin/admin_course_details_screen.dart';
 import 'package:amin/model/CourseBuy.dart';
 import 'package:amin/model/UserList.dart';
+import 'package:amin/utils/next_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
@@ -37,7 +39,7 @@ class _AdminCourseBuyListState extends State<AdminCourseBuyList> {
               children: [
                 ListTile(
                   onTap: (){
-          //      nextScreen(context, AdminProfileScreen(userlist:user));
+                nextScreen(context, AdminCourseDetailsScreen(cName:user.title,cId: user.cId,cPaidPrice: user.paidAmount,DateTime:user.date,userId:user.uId));
                   },
                   // leading: CircleAvatar(backgroundImage: NetworkImage(user.image!),),
                   title: Row(children: [

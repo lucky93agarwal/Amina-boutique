@@ -8,6 +8,7 @@ import 'package:amin/admin/admin_product_banner.dart';
 import 'package:amin/admin/admin_rating_list.dart';
 import 'package:amin/admin/admin_user_list.dart';
 import 'package:amin/admin/admin_video_list.dart';
+import 'package:amin/create_course_buy_screen.dart';
 import 'package:amin/helper/shared_preference_helper.dart';
 import 'package:amin/helper/uitils.dart';
 import 'package:amin/admin/admin_home_banner_screen.dart';
@@ -1219,7 +1220,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     InkWell(
                       onTap:(){
 
-                        nextScreen(context, AdminProductBannerScreen());
+                        nextScreen(context, CreateCoursebuyScreen());
                       },
                       child: Container(
                         height: 150,
