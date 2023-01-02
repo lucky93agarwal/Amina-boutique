@@ -223,7 +223,7 @@ class DressModel {
 
     _xxxLxSize = json['xxXLxSize'];
     _xxxLxPrice = json['xxXLxPrice'];
-    _xxxlxmrp = json['xxxxXLxStock'];
+    _xxxlxmrp = json['xxXLxStock'];
     _xxxlxname = json['XLxName'];
 
     _imgWhite1 = json['ImgWhite1'];

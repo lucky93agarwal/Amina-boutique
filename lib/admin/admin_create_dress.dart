@@ -547,7 +547,7 @@ class _AdminCreateDressScreenState extends State<AdminCreateDressScreen> {
       lSize: sizeL,
       lPrice: _sizeLPriceController.text.toString().toString().length == 0?"0":_sizeLPriceController.text.toString(),
       lmrp: _sizeLMRPController.text.toString().toString().length == 0?"0":_sizeLMRPController.text.toString(),
-      lname: _sizeLNameController.text.toString().toString().length == 0?"0":_sizeLMRPController.text.toString(),
+      lname: _sizeLNameController.text.toString().toString().length == 0?"0":_sizeLNameController.text.toString(),
 
       xLSize: sizeXL,
       xLPrice: _sizeXLPriceController.text.toString().length == 0?"0":_sizeXLPriceController.text.toString(),

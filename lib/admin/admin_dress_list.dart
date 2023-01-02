@@ -55,6 +55,8 @@ class _AdminDressListScreenState extends State<AdminDressListScreen> {
                   for (int i = 0; i < value.docs.length; i++)
                     {
                       authgetfriendship = DressModel.fromJson(docss[i].data()),
+                      cprint(
+                          'login message =786 value = ' + docss[i].data().toString()),
                       refIdList.add(docss[i].reference.id),
                       dressList.add(authgetfriendship),
                       setState(() {

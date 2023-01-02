@@ -14,10 +14,11 @@ import '../utils/color.dart';
 class VideoPlayScreen extends StatefulWidget {
   String? categories;
   String? subCategory;
+  String? cId;
   bool? check;
 
   VideoPlayScreen(
-      {Key? key, required this.subCategory, required this.categories, required this.check})
+      {Key? key, required this.subCategory, required this.categories, required this.check,required this.cId})
       : super(key: key);
 
   @override
@@ -49,7 +50,7 @@ class _VideoPlayScreenState extends State<VideoPlayScreen> {
         'login message =786 categories name = ' + widget.categories.toString());
     var result = await FirebaseFirestore.instance
         .collection('video')
-        .where('categories', isEqualTo: widget.categories)
+        .where('cId', isEqualTo: widget.cId)
         /*.where('subCategory', isEqualTo: widget.subCategory)*/
         .get()
         .then((value) => {
@@ -232,7 +233,7 @@ class _VideoPlayScreenState extends State<VideoPlayScreen> {
           Visibility(
             visible: widget.check!,
             child: IconButton(onPressed: (){
-              nextScreen(context, AdminCreateVideoScreen(subCategory: widget.subCategory,categories: widget.categories,));
+              nextScreen(context, AdminCreateVideoScreen(subCategory: widget.subCategory,categories: widget.categories,cId: widget.cId,));
             }, icon: Icon(Icons.add,color: Colors.white,)),
           )
         ],

@@ -136,6 +136,7 @@ class _HomeVideoScreenState extends State<HomeVideoScreen> {
                                       subCategory: "user.title!",
                                       categories: user.title!,
                                       check: false,
+                                      cId: user.id,
                                     ));
                               },
                               child: Container(height: 10,margin: const EdgeInsets.symmetric(horizontal: 5),

@@ -9,7 +9,8 @@
 class CourseList {
   CourseList({
       String? cId, 
-      String? cName, 
+      String? cName,
+    String? introURL,
       String? cDetails, 
       String? cThum, 
       String? cPrice, 
@@ -18,6 +19,7 @@ class CourseList {
     List<CourseVideo>? video,}){
     _cId = cId;
     _cName = cName;
+    _introURL = introURL;
     _cDetails = cDetails;
     _cThum = cThum;
     _cPrice = cPrice;
@@ -29,6 +31,7 @@ class CourseList {
   CourseList.fromJson(dynamic json) {
     _cId = json['cId'];
     _cName = json['cName'];
+    _introURL = json['introURL'];
     _cDetails = json['cDetails'];
     _cThum = json['cThum'];
     _cPrice = json['cPrice'];
@@ -43,6 +46,7 @@ class CourseList {
   }
   String? _cId;
   String? _cName;
+  String? _introURL;
   String? _cDetails;
   String? _cThum;
   String? _cPrice;
@@ -51,6 +55,7 @@ class CourseList {
   List<CourseVideo>? _video;
 CourseList copyWith({  String? cId,
   String? cName,
+  String? introURL,
   String? cDetails,
   String? cThum,
   String? cPrice,
@@ -59,6 +64,7 @@ CourseList copyWith({  String? cId,
   List<CourseVideo>? video,
 }) => CourseList(  cId: cId ?? _cId,
   cName: cName ?? _cName,
+  introURL: introURL?? _introURL,
   cDetails: cDetails ?? _cDetails,
   cThum: cThum ?? _cThum,
   cPrice: cPrice ?? _cPrice,
@@ -68,6 +74,7 @@ CourseList copyWith({  String? cId,
 );
   String? get cId => _cId;
   String? get cName => _cName;
+  String? get introURL => _introURL;
   String? get cDetails => _cDetails;
   String? get cThum => _cThum;
   String? get cPrice => _cPrice;
@@ -84,6 +91,7 @@ CourseList copyWith({  String? cId,
     final map = <String, dynamic>{};
     map['cId'] = _cId;
     map['cName'] = _cName;
+    map['introURL'] = _introURL;
     map['cDetails'] = _cDetails;
     map['cThum'] = _cThum;
     map['cPrice'] = _cPrice;

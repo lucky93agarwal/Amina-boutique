@@ -14,7 +14,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 class AdminCreateVideoScreen extends StatefulWidget {
   String? categories;
   String? subCategory;
-  AdminCreateVideoScreen({Key? key, required this.subCategory, required this.categories}) : super(key: key);
+  String? cId;
+  AdminCreateVideoScreen({Key? key, required this.subCategory, required this.categories,required this.cId}) : super(key: key);
 
   @override
   State<AdminCreateVideoScreen> createState() => _AdminCreateVideoScreenState();
@@ -44,6 +45,7 @@ class _AdminCreateVideoScreenState extends State<AdminCreateVideoScreen> {
 
     userss
         .add({"subCategory":widget.subCategory,
+      "cId":widget.cId,
       "categories":widget.categories,
       "time":_timerController.text,
       "title":_titleController.text,

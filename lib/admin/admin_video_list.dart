@@ -26,28 +26,29 @@ class AdminVideoListScreen extends StatefulWidget {
 class _AdminVideoListScreenState extends State<AdminVideoListScreen> {
 
 
-  _buildExpandableContent(Vehicle vehicle) {
-    List<Widget> columnContent = [];
-
-    for (String content in vehicle.contents)
-      columnContent.add(
-        new ListTile(
-          title:
-              new Text(content, style: Theme.of(context).textTheme.headline6),
-          onTap: () {
-            nextScreen(
-                context,
-                VideoPlayScreen(
-                  subCategory: content,
-                  categories: vehicle.title,
-                  check: true,
-                ));
-          },
-        ),
-      );
-
-    return columnContent;
-  }
+  // _buildExpandableContent(Vehicle vehicle) {
+  //   List<Widget> columnContent = [];
+  //
+  //   for (String content in vehicle.contents)
+  //     columnContent.add(
+  //       new ListTile(
+  //         title:
+  //             new Text(content, style: Theme.of(context).textTheme.headline6),
+  //         onTap: () {
+  //           nextScreen(
+  //               context,
+  //               VideoPlayScreen(
+  //                 subCategory: content,
+  //                 categories: vehicle.title,
+  //                 check: true,
+  //                 cId: vehicle,
+  //               ));
+  //         },
+  //       ),
+  //     );
+  //
+  //   return columnContent;
+  // }
 
   final queryPost = FirebaseFirestore.instance
       .collection('videoCategory')
@@ -366,6 +367,7 @@ class _AdminVideoListScreenState extends State<AdminVideoListScreen> {
                               subCategory: "user.title!",
                               categories: user.title!,
                               check: true,
+                              cId: user.id,
                             ));
                       },child: Container(width: MediaQuery.of(context).size.width,
                       height: 200,

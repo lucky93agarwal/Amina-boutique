@@ -39,6 +39,7 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
     if(widget.admin == true){
       _courseDetailsController.text = widget.courseList!.cDetails!;
       _courseTitleController.text = widget.courseList!.cName!;
+      _introVideoController.text = widget.courseList!.introURL!;
       _priceController.text = widget.courseList!.cPrice!;
       _mrpController.text = widget.courseList!.cMRP!;
       imageUrl = widget.courseList!.cThum;
@@ -64,6 +65,7 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
   }
   final TextEditingController _courseDetailsController = TextEditingController();
   final TextEditingController _courseTitleController = TextEditingController();
+  final TextEditingController _introVideoController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _mrpController = TextEditingController();
 
@@ -81,6 +83,7 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
   void dispose() {
     _courseDetailsController.dispose();
     _courseTitleController.dispose();
+    _introVideoController.dispose();
     _priceController.dispose();
     _mrpController.dispose();
 
@@ -134,6 +137,7 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
     if(widget.admin == true){
       courseList = CourseList(cId:widget.courseList!.cId,
           cName:_courseTitleController.text,
+          introURL: _introVideoController.text,
           cDetails: _courseDetailsController.text,
           cMRP: _mrpController.text,
           cPrice: _priceController.text,
@@ -157,6 +161,7 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
       String courseids = "Course" + randomNumber.toString();
       courseList = CourseList(cId:courseids,
           cName:_courseTitleController.text,
+          introURL: _introVideoController.text,
           cDetails: _courseDetailsController.text,
           cMRP: _mrpController.text,
           cPrice: _priceController.text,
@@ -481,6 +486,17 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
           ),
           SizedBox(height: 10,),
           EntryField(
+            controller: _introVideoController,
+            label: 'Intro Video URL',
+            image: null,
+            keyboardType: TextInputType.emailAddress,
+            maxLength: null,
+            readOnly: false,
+            hint:'Please enter intro video url',
+          ),
+          //
+          SizedBox(height: 10,),
+          EntryField(
             controller: _courseDetailsController,
             label: 'Course Details',
             image: null,
@@ -525,6 +541,11 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
               _cvTitleControllers[index].text =_updatetite.text.toString();
               _cvTimeControllers[index].text =_updatetiming.text.toString();
               _cvDetailsControllers[index].text =_updatevideodetails.text.toString();
+
+              _updateurl.text = "";
+              _updatetite.text = "";
+              _updatetiming.text = "";
+              _updatevideodetails.text = "";
             }
 
 
@@ -678,7 +699,10 @@ class _AdminCreateCourseScreenState extends State<AdminCreateCourseScreen> {
                   showToast("Please enter course details...");
                 } else if (_courseTitleController.text.length == 0) {
                   showToast("Please enter course title..");
-
+//_introVideoController
+                } else  if (_introVideoController.text.length == 0) {
+                  showToast("Please enter intro video url..");
+//_introVideoController
                 } else if (_priceController.text.length == 0) {
                   showToast("Please enter course price.");
 

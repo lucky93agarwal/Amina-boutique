@@ -33,28 +33,28 @@ class Vehicle {
 class _VideoScreenState extends State<VideoScreen> {
   final db = FirebaseFirestore.instance;
 
-  _buildExpandableContent(Vehicle vehicle) {
-    List<Widget> columnContent = [];
-
-    for (String content in vehicle.contents)
-      columnContent.add(
-        new ListTile(
-          title:
-              new Text(content, style: Theme.of(context).textTheme.headline6),
-          onTap: () {
-            nextScreen(
-                context,
-                VideoPlayScreen(
-                  subCategory: content,
-                  categories: vehicle.title,
-                  check: false,
-                ));
-          },
-        ),
-      );
-
-    return columnContent;
-  }
+  // _buildExpandableContent(Vehicle vehicle) {
+  //   List<Widget> columnContent = [];
+  //
+  //   for (String content in vehicle.contents)
+  //     columnContent.add(
+  //       new ListTile(
+  //         title:
+  //             new Text(content, style: Theme.of(context).textTheme.headline6),
+  //         onTap: () {
+  //           nextScreen(
+  //               context,
+  //               VideoPlayScreen(
+  //                 subCategory: content,
+  //                 categories: vehicle.title,
+  //                 check: false,
+  //               ));
+  //         },
+  //       ),
+  //     );
+  //
+  //   return columnContent;
+  // }
   final queryPost = FirebaseFirestore.instance
       .collection('videoCategory')
       .withConverter<VideoCategory>(
@@ -330,6 +330,7 @@ class _VideoScreenState extends State<VideoScreen> {
                               VideoPlayScreen(
                                 subCategory: "user.title!",
                                 categories: user.title!,
+                                cId: user.id,
                                 check: false,
                               ));
                         },
